@@ -37,7 +37,6 @@
       obsidian
 
       # Communication
-      signal-desktop
       localsend
 
       # API clients
@@ -45,7 +44,6 @@
       postman
 
       # Development
-      mise # Runtime version manager
       gcc
       clang
       llvm
