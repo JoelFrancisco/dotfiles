@@ -20,6 +20,7 @@
       evince # PDF viewer
       imv # Image viewer
       xournalpp # Annotation
+      yazi # Terminal file manager
 
       # Media
       mpv
@@ -35,15 +36,27 @@
       libreoffice-fresh
       gnome-calculator
       obsidian
+      typora
+      todoist-electron
+      standardnotes
 
       # Communication
       localsend
+      zoom-us
+      telegram-desktop
+      vesktop # Discord client
+
+      # Browsers
+      zen-browser
+      brave
 
       # API clients
       yaak
       postman
 
       # Development
+      zed-editor
+      jetbrains.idea-ultimate
       gcc
       clang
       llvm
