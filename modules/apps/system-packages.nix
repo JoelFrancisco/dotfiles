@@ -56,7 +56,7 @@
 
       # Development
       zed-editor
-      jetbrains.idea-ultimate
+      jetbrains.idea
       gcc
       clang
       llvm
