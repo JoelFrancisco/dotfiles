@@ -32,6 +32,10 @@
     shell = pkgs.bash;
   };
 
+  # SSH access
+  services.openssh.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 ];
+
   # QEMU guest agent for better host integration
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
