@@ -79,7 +79,7 @@
       polkit_gnome
       gnome-themes-extra
       qt5.qtwayland
-      kdePackages.qt6-wayland
+      kdePackages.qtwayland
 
       # Misc
       libqalculate
