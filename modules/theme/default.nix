@@ -41,6 +41,11 @@ in
       ];
 
       themedFiles = builtins.listToAttrs (map generateThemedFile relevantTemplates);
+
+      # Write each themed file to the Nix store
+      themedStorePaths = lib.mapAttrs (name: content:
+        pkgs.writeText "omarchy-theme-${name}" content
+      ) themedFiles;
     in
     {
       options.omarchy.theme = {
@@ -64,11 +69,9 @@ in
           THEME_DIR="$HOME/.config/omarchy/current/theme"
           mkdir -p "$THEME_DIR"
 
-          ${lib.concatStringsSep "\n" (lib.mapAttrsToList (name: content: ''
-            cat > "$THEME_DIR/${name}" << 'THEME_EOF'
-            ${content}
-            THEME_EOF
-          '') themedFiles)}
+          ${lib.concatStringsSep "\n" (lib.mapAttrsToList (name: storePath:
+            "cp ${storePath} \"$THEME_DIR/${name}\""
+          ) themedStorePaths)}
 
           # Copy theme-specific extras (backgrounds, btop themes, etc.)
           THEME_SRC="${assetsPath}/themes/${cfg.name}"
@@ -76,9 +79,28 @@ in
             for f in "$THEME_SRC"/*; do
               fname="$(basename "$f")"
               [ "$fname" = "colors.toml" ] && continue
-              [ -f "$THEME_DIR/$fname" ] || cp "$f" "$THEME_DIR/$fname" 2>/dev/null || true
+              if [ -d "$f" ]; then
+                [ -d "$THEME_DIR/$fname" ] || cp -r "$f" "$THEME_DIR/$fname" 2>/dev/null || true
+              else
+                [ -f "$THEME_DIR/$fname" ] || cp "$f" "$THEME_DIR/$fname" 2>/dev/null || true
+              fi
             done
           fi
+
+          # Set default wallpaper symlink if not already set
+          CURRENT_BG="$HOME/.config/omarchy/current/background"
+          if [ ! -e "$CURRENT_BG" ]; then
+            BG_DIR="$THEME_DIR/backgrounds"
+            if [ -d "$BG_DIR" ]; then
+              FIRST_BG="$(find -L "$BG_DIR" -maxdepth 1 -type f | sort | head -n 1)"
+              if [ -n "$FIRST_BG" ]; then
+                ln -nsf "$FIRST_BG" "$CURRENT_BG"
+              fi
+            fi
+          fi
+
+          # Store theme name for reference
+          echo "${cfg.name}" > "$HOME/.config/omarchy/current/theme.name"
         '';
       };
     };

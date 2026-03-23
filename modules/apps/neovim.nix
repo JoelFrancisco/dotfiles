@@ -25,8 +25,8 @@
     # Clone LazyVim starter if nvim config doesn't exist
     home.activation.initLazyVim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if [ ! -d "$HOME/.config/nvim" ]; then
-        ${pkgs.git}/bin/git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
-        rm -rf "$HOME/.config/nvim/.git"
+        ${pkgs.git}/bin/git clone https://github.com/LazyVim/starter "$HOME/.config/nvim" 2>/dev/null && \
+          rm -rf "$HOME/.config/nvim/.git" || true
       fi
     '';
   };
