@@ -27,10 +27,12 @@
       };
     };
 
+    home.packages = [ pkgs.xdg-terminal-exec ];
+
     # Set kitty as the default terminal
     home.sessionVariables.TERMINAL = "kitty";
 
-    # XDG terminal exec configuration
-    xdg.configFile."xdg-terminal-exec/default".text = "kitty\n";
+    # xdg-terminal-exec config
+    home.file.".config/xdg-terminals.list".text = "kitty\n";
   };
 }
