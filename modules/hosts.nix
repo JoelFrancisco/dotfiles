@@ -37,5 +37,12 @@ in
         ../hosts/laptop/configuration.nix
       ];
     };
+
+    vm = inputs.nixpkgs.lib.nixosSystem {
+      inherit system specialArgs;
+      modules = commonModules ++ [
+        ../hosts/vm/configuration.nix
+      ];
+    };
   };
 }
