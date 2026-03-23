@@ -33,6 +33,10 @@ in
       };
 
       bashrcExtra = ''
+        # Disable set -e to prevent home-manager activation failures
+        # (bash -el in hm-setup-env + non-interactive return causes exit 1)
+        set +e
+
         # Omarchy bash extensions
         source "${assetsPath}/default/bash/envs" 2>/dev/null || true
         source "${assetsPath}/default/bash/shell" 2>/dev/null || true
