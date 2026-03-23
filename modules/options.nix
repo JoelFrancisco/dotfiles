@@ -1,11 +1,8 @@
-# Declare flake.nixosModules and flake.homeManagerModules as mergeable options
+# Declare flake.homeManagerModules as a mergeable option
 # so multiple dendritic modules can each contribute their own definitions.
+# (flake.nixosModules is already built-in to flake-parts)
 { lib, ... }: {
   options.flake = {
-    nixosModules = lib.mkOption {
-      type = lib.types.attrsOf lib.types.raw;
-      default = {};
-    };
     homeManagerModules = lib.mkOption {
       type = lib.types.attrsOf lib.types.raw;
       default = {};
