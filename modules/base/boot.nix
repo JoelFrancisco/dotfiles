@@ -1,8 +1,8 @@
 { ... }: {
-  flake.nixosModules.boot = { pkgs, ... }: {
+  flake.nixosModules.boot = { lib, pkgs, ... }: {
     boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      systemd-boot.enable = lib.mkDefault true;
+      efi.canTouchEfiVariables = lib.mkDefault true;
     };
 
     boot.plymouth.enable = true;

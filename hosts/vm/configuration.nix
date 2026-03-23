@@ -5,6 +5,14 @@
 
   networking.hostName = "omarchy-vm";
 
+  # Use GRUB instead of systemd-boot (BIOS VM)
+  boot.loader.systemd-boot.enable = false;
+  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/vda";
+  };
+
   # No GPU hardware module needed — QEMU virtio/QXL works out of the box
 
   # Disable bluetooth in VM
