@@ -47,7 +47,7 @@
       vesktop # Discord client
 
       # Browsers
-      zen-browser
+      # zen-browser  # TODO: needs custom flake input (not in nixpkgs)
       brave
 
       # API clients
