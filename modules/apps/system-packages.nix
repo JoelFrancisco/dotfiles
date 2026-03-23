@@ -27,7 +27,7 @@
       vlc
       ffmpegthumbnailer
       obs-studio
-      kdenlive
+      kdePackages.kdenlive
       pinta # Image editor
       imagemagick
       gpu-screen-recorder
