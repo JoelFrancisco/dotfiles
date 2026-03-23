@@ -43,6 +43,7 @@ in
       source = ${assetsPath}/default/hypr/looknfeel.conf
       source = ${assetsPath}/default/hypr/input.conf
       source = ${assetsPath}/default/hypr/windows.conf
+      source = ${assetsPath}/default/hypr/apps.conf
       source = ~/.config/omarchy/current/theme/hyprland.conf
 
       # User overrides (edit these freely)
