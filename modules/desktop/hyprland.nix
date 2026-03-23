@@ -53,6 +53,10 @@ in
       source = ~/.config/hypr/autostart.conf
     '';
 
+    # Symlink ~/.local/share/omarchy to Nix store assets so all default
+    # source = ~/.local/share/omarchy/... paths in config files work
+    home.file.".local/share/omarchy".source = assetsPath;
+
     # Copy user-editable config files only if they don't already exist
     home.activation.initHyprConfigs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       for f in monitors.conf input.conf bindings.conf looknfeel.conf autostart.conf hypridle.conf hyprlock.conf hyprsunset.conf xdph.conf; do
