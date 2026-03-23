@@ -40,6 +40,10 @@
       signal-desktop
       localsend
 
+      # API clients
+      yaak
+      postman
+
       # Development
       mise # Runtime version manager
       gcc
