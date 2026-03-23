@@ -34,6 +34,7 @@ Uses the **Dendritic Pattern** with [flake-parts](https://flake.parts) + [import
 |------|-----|-------------|
 | `desktop` | NVIDIA | Primary workstation |
 | `laptop` | Intel iGPU | Work notebook |
+| `vm` | virtio | QEMU/KVM test VM |
 
 ## Usage
 
@@ -45,6 +46,34 @@ sudo nixos-rebuild dry-build --flake .#desktop
 sudo nixos-rebuild switch --flake .#desktop
 # or
 sudo nixos-rebuild switch --flake .#laptop
+```
+
+## Testing in a VM
+
+Create a QEMU/KVM VM with virt-manager or:
+
+```bash
+virt-install \
+  --name nixos-test \
+  --ram 4096 --vcpus 2 \
+  --disk size=40 \
+  --cdrom /path/to/nixos.iso \
+  --os-variant nixos-unstable \
+  --boot uefi \
+  --video virtio
+```
+
+After installing NixOS in the VM:
+
+```bash
+# Clone dotfiles
+git clone https://github.com/JoelFrancisco/dotfiles ~/dotfiles
+
+# Replace hardware-configuration.nix with the one generated during install
+cp /etc/nixos/hardware-configuration.nix ~/dotfiles/hosts/vm/hardware-configuration.nix
+
+# Deploy
+sudo nixos-rebuild switch --flake ~/dotfiles#vm
 ```
 
 ## Desktop Stack
