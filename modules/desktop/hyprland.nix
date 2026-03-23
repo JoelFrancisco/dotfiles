@@ -44,14 +44,14 @@ in
       source = ${assetsPath}/default/hypr/input.conf
       source = ${assetsPath}/default/hypr/windows.conf
       source = ${assetsPath}/default/hypr/apps.conf
-      source = ~/.config/omarchy/current/theme/hyprland.conf
+      source = ?~/.config/omarchy/current/theme/hyprland.conf
 
       # User overrides (edit these freely)
-      source = ~/.config/hypr/monitors.conf
-      source = ~/.config/hypr/input.conf
-      source = ~/.config/hypr/bindings.conf
-      source = ~/.config/hypr/looknfeel.conf
-      source = ~/.config/hypr/autostart.conf
+      source = ?~/.config/hypr/monitors.conf
+      source = ?~/.config/hypr/input.conf
+      source = ?~/.config/hypr/bindings.conf
+      source = ?~/.config/hypr/looknfeel.conf
+      source = ?~/.config/hypr/autostart.conf
     '';
 
     # Symlink ~/.local/share/omarchy to Nix store assets so all default
