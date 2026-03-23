@@ -1,11 +1,6 @@
 #!/bin/bash
 
-# Launch the Walker application launcher while ensuring that it's data provider (called elephant) is running first.
-
-# Ensure elephant is running before launching walker
-if ! pgrep -x elephant > /dev/null; then
-  setsid uwsm-app -- elephant &
-fi
+# Launch the Walker application launcher.
 
 # Ensure walker service is running
 if ! pgrep -f "walker --gapplication-service" > /dev/null; then
